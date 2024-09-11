@@ -1,0 +1,224 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #fbc2eb, #a6c0fe); /* Soft pink to blue gradient */
+}
+
+/* Header Styles */
+h1 {
+    color: #fff;
+    font-size: 2.5rem;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* Category Dashboard */
+.category-dashboard {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    padding: 12px 24px;
+    background-color: #ff9a8b; /* Soft coral color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.category-btn:hover {
+    background-color: #ff6f61; /* Slightly darker coral color */
+    transform: scale(1.05);
+}
+
+.category-btn.active {
+    background-color: #ff4f56; /* Darker coral color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Carousel Section */
+.carousel-container {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 10px;
+    padding: 10px;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+}
+
+.carousel::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+}
+
+.carousel-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.menu-item {
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: 200px;
+    background: linear-gradient(135deg, #ffffff, #f9f9f9); /* Subtle gradient for items */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.menu-item-content {
+    margin-bottom: 10px;
+}
+
+.menu-item-details {
+    text-align: center;
+}
+
+.menu-item:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.item-img {
+    width: 70%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 12px;
+    margin-left: 30px;
+}
+
+/* Menu Item Text */
+.menu-item h3 {
+    font-size: 18px;
+    margin: 8px 0;
+    color: #333;
+    margin-left: 70px;
+}
+
+.menu-item p {
+    font-size: 14px;
+    margin: 4px 0;
+    color: #666;
+}
+
+/* Cart Section */
+.cart-section {
+    border-top: 2px solid #ddd;
+    padding: 20px;
+    background: linear-gradient(135deg, #ffffff, #fefae0); /* Cream gradient for the cart */
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto; /* Centered margin */
+    max-width: 500px; /* Limit the width */
+    position: relative; /* Ensure correct stacking */
+}
+
+.cart-section h2 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.cart-section ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.cart-section ul li {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+}
+
+.cart-section p {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 15px 0;
+    text-align: center;
+}
+
+#checkout-btn {
+    padding: 12px 24px;
+    background-color: #ff6f61; /* Coral color */
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#checkout-btn:hover {
+    background-color: #ff4f56; /* Darker coral color */
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .cart-section {
+        padding: 15px;
+        margin: 15px;
+    }
+
+    .cart-section h2 {
+        font-size: 20px;
+    }
+
+    .cart-section p {
+        font-size: 16px;
+    }
+
+    #checkout-btn {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cart-section {
+        padding: 10px;
+        margin: 10px;
+    }
+
+    .cart-section h2 {
+        font-size: 18px;
+    }
+
+    .cart-section ul li {
+        font-size: 14px;
+    }
+
+    .cart-section p {
+        font-size: 14px;
+    }
+
+    #checkout-btn {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+}
