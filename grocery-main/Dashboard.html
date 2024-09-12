@@ -8,7 +8,19 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button class="close-btn" onclick="closeSidebar()">×</button>
+        <a href="#" onclick="showMenu()">Dashboard</a>
+        <a href="#">Categories</a>
+        <a href="#" onclick="showCart()">Cart</a>
+        <a href="#">Settings</a>
+    </div>
+
+    <!-- Main content -->
     <div class="container">
+        <!-- Burger Icon for Sidebar -->
+        <span class="burger-icon" onclick="openSidebar()">&#9776;</span>
         <h1>Grocery List Dashboard</h1>
 
         <!-- Category Selection -->
@@ -86,7 +98,6 @@
                             <p>Quantity: 1</p>
                         </div>
                     </div>
-                    <!-- Corrected Items -->
                     <div class="menu-item" data-category="meat">
                         <div class="menu-item-content">
                             <img src="image/meat.png" alt="Meat" class="item-img" data-id="6">
@@ -139,7 +150,6 @@
             </div>
         </div>
 
-        
         <!-- Cart Section -->
         <div class="cart-section">
             <h2>Your Cart</h2>
@@ -150,5 +160,18 @@
     </div>
 
     <script src="Dashboard.js"></script>
+
+    <!-- Sidebar Script -->
+    <script>
+        function openSidebar() {
+            document.getElementById('sidebar').style.width = '250px';  // Adjust the sidebar width
+            document.getElementById('main-content').style.marginLeft = '250px'; // Shift main content
+        }
+
+        function closeSidebar() {
+            document.getElementById('sidebar').style.width = '0';  // Hide the sidebar
+            document.getElementById('main-content').style.marginLeft = '0'; // Reset content margin
+        }
+    </script>
 </body>
 </html>

@@ -4,14 +4,24 @@ const cartList = document.getElementById('cart-list');
 const totalPriceSpan = document.getElementById('total-price');
 const checkoutButton = document.getElementById('checkout-btn');
 const viewCartButton = document.getElementById('view-cart-btn');
-const backToMenuButton = document.getElementById('back-to-menu-btn');
-const cartSection = document.getElementById('cart-section');
+const cartSection = document.querySelector('.cart-section');
 const carouselContainer = document.getElementById('carousel-container');
+const sidebar = document.getElementById('sidebar');
 
-let cart = [];
-let totalPrice = 0;
+let cart = []; // Initialize cart
 
-// Function to populate menu based on category
+// Function to open sidebar
+function openSidebar() {
+    sidebar.style.width = '250px';  // Adjust sidebar width
+    document.getElementById('main-content').style.marginLeft = '250px'; // Shift main content
+}
+
+// Function to close sidebar
+function closeSidebar() {
+    sidebar.style.width = '0';  // Collapse sidebar
+    document.getElementById('main-content').style.marginLeft = '0'; // Reset content margin
+}
+
 function populateMenu(category) {
     const items = document.querySelectorAll('.menu-item');
     
@@ -60,13 +70,14 @@ function addToCart(itemID) {
         cart.push(cartItem);
     }
 
+    // Update the cart display
     updateCart();
 }
 
 // Function to update cart
 function updateCart() {
     cartList.innerHTML = ''; // Clear the current cart list
-    totalPrice = 0;
+    let totalPrice = 0;
 
     cart.forEach(item => {
         const li = document.createElement('li');
@@ -91,7 +102,7 @@ function showMenu() {
     cartSection.style.display = 'none'; // Hide cart section
 }
 
-// Event listeners
+// Event listeners for category buttons
 categoryButtons.forEach(button => {
     button.addEventListener('click', () => {
         const category = button.getAttribute('data-category');
@@ -103,6 +114,7 @@ categoryButtons.forEach(button => {
     });
 });
 
+// Event listener for clicking on item images to add to cart
 carouselWrapper.addEventListener('click', event => {
     if (event.target.classList.contains('item-img')) {
         const itemID = event.target.getAttribute('data-id');
@@ -110,6 +122,7 @@ carouselWrapper.addEventListener('click', event => {
     }
 });
 
+// Event listener for checkout button
 checkoutButton.addEventListener('click', () => {
     if (cart.length === 0) {
         Swal.fire('Your cart is empty!', '', 'warning');
@@ -118,17 +131,18 @@ checkoutButton.addEventListener('click', () => {
 
     Swal.fire({
         title: 'Checkout Complete',
-        text: `Total price: $${totalPrice.toFixed(2)}`,
+        text: `Total price: $${totalPriceSpan.textContent}`,
         icon: 'success'
-    });
+    }).then(() => {
+        // Clear the cart and update the display
+        cart = [];
+        updateCart(); // Clear the cart list and reset total price
 
-    showCart(); // Show cart section
+        showMenu(); // Show menu section after checkout
+    });
 });
 
+// Event listener for view cart button
 viewCartButton.addEventListener('click', () => {
     showCart(); // Show cart section
-});
-
-backToMenuButton.addEventListener('click', () => {
-    showMenu(); // Show menu section
 });
