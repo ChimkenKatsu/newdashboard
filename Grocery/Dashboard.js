@@ -1,3 +1,4 @@
+// Select elements
 const categoryButtons = document.querySelectorAll('.category-btn');
 const carouselWrapper = document.getElementById('carousel-wrapper');
 const cartList = document.getElementById('cart-list');
@@ -7,19 +8,30 @@ const viewCartButton = document.getElementById('view-cart-btn');
 const addItemButton = document.getElementById('add-item-btn');
 const cartSection = document.querySelector('.cart-section');
 const carouselContainer = document.getElementById('carousel-container');
-const sidebar = document.getElementById('sidebar');
-const popup = document.getElementById('popup-form'); // Corrected ID
+const popup = document.getElementById('popup-form');
 const itemForm = document.getElementById('item-form');
 const itemNameInput = document.getElementById('item-name');
 const itemCategoryInput = document.getElementById('item-category');
 const itemImageInput = document.getElementById('item-image');
 const itemPriceInput = document.getElementById('item-price');
-const closePopupButton = document.getElementById('close-popup-btn'); 
+const closePopupButton = document.getElementById('close-popup-btn');
 const searchBar = document.getElementById('search-bar');
-const menuItems = document.querySelectorAll('.menu-item');
+let menuItems = document.querySelectorAll('.menu-item');
 
 let cart = []; // Initialize cart
 
+// Function to populate menu based on selected category
+function populateMenu(category) {
+    menuItems.forEach(item => {
+        if (category === 'all' || item.getAttribute('data-category') === category) {
+            item.style.display = 'block'; // Show matching items
+        } else {
+            item.style.display = 'none'; // Hide non-matching items
+        }
+    });
+}
+
+// Event listener for search bar
 searchBar.addEventListener('input', () => {
     const searchTerm = searchBar.value.toLowerCase();
     menuItems.forEach(item => {
@@ -31,40 +43,6 @@ searchBar.addEventListener('input', () => {
         }
     });
 });
-// Function to open sidebar
-function openSidebar() {
-    sidebar.style.width = '250px';  // Adjust sidebar width
-    document.getElementById('main-content').style.marginLeft = '250px'; // Shift main content
-}
-
-// Function to close sidebar
-function closeSidebar() {
-    sidebar.style.width = '0';  // Hide the sidebar
-    document.getElementById('main-content').style.marginLeft = '0'; // Reset content margin
-}
-
-// Function to open popup
-function openPopup() {
-    popup.style.display = 'flex'; // Show the popup
-}
-
-// Function to close popup
-function closePopup() {
-    popup.style.display = 'none'; // Hide the popup
-}
-
-// Function to populate menu items
-function populateMenu(category) {
-    const items = document.querySelectorAll('.menu-item');
-    
-    items.forEach(item => {
-        if (item.getAttribute('data-category') === category || category === 'all') {
-            item.style.display = 'block';
-        } else {
-            item.style.display = 'none';
-        }
-    });
-}
 
 // Function to add item to cart
 function addToCart(itemID) {
@@ -177,8 +155,9 @@ function handleAddItem(event) {
         itemForm.reset();
         closePopup();
 
-        // Optionally, automatically show the newly added item in the correct category
-        populateMenu(category);
+        // Re-query menu items and refresh menu display
+        menuItems = document.querySelectorAll('.menu-item'); // Re-query items
+        populateMenu(category); // Show newly added item based on the selected category
     };
     reader.readAsDataURL(file); // Read the image file as a Data URL
 }
@@ -240,4 +219,3 @@ itemForm.addEventListener('submit', handleAddItem);
 closePopupButton.addEventListener('click', () => {
     closePopup(); // Hide the popup
 });
-

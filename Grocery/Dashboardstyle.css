@@ -332,7 +332,7 @@ h1 {
     border: 1px solid rgba(255, 255, 255, 0.3); /* Semi-transparent border */
     border-radius: 4px; /* Rounded corners */
     background: rgba(255, 255, 255, 0.2); /* Slightly transparent background */
-    color: #ffffff; /* White text color */
+    color: #333131; /* White text color */
     box-sizing: border-box; /* Ensure padding is included in width */
 }
 
